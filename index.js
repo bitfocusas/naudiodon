@@ -14,10 +14,12 @@
 */
 
 const { Readable, Writable, Duplex } = require('stream');
+const os = require('os');
+const path = require('path');
 const portAudioBindings = require("bindings")("naudiodon.node");
 
-var SegfaultHandler = require('segfault-handler');
-SegfaultHandler.registerHandler("crash.log");
+var SegfaultHandler = require('node-segfault-handler');
+SegfaultHandler.registerHandler(path.join(os.tmpdir(), 'crash.log'));
 
 exports.SampleFormatFloat32 = 1;
 exports.SampleFormat8Bit = 8;
